@@ -16,8 +16,14 @@
       })
     }
     const main = async () => {
-      while (true) {
-        memory.grow(100);
+      var growing = true;
+      while (growing) {
+        try {
+            memory.grow(100);
+        } catch {
+            growing = false;
+        }
+        
         result.innerText = formatBytes(memory.buffer.byteLength);
         await tick()
       }
